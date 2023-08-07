@@ -6,6 +6,7 @@ from pytesseract import image_to_string
 import pytesseract
 # import re
 # import requests
+import PyMuPDF
 import openai
 import fitz
 # import time
