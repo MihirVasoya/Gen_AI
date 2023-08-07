@@ -12,7 +12,7 @@ import requests
 
 
 
-openai.api_key = ""
+openai.api_key = "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"
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
