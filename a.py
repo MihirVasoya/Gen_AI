@@ -4,13 +4,9 @@ import PyPDF2
 from pdf2image import convert_from_path
 from pytesseract import image_to_string 
 import pytesseract
-# import re
-# import requests
-import PyMuPDF
 import openai
 import fitz
-# import time
-# import uuid
+
 
 openai.api_key = "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"
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
