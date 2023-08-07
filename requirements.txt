@@ -1,5 +1,24 @@
-openai == 0.27.8
-PyPDF2 == 3.0.1
+
+
+openai==0.27.7
+
 pdf2image==1.16.3
+
+pdfplumber==0.10.0
+pdfrw==0.4
+pdfrw2==0.5.0
+pdftopng==0.2.3
+
+PyMuPDF==1.22.5
+
+pypdf==3.12.2
+PyPDF2==3.0.1
+
 pytesseract==0.3.10
+pytest==7.1.2
+
+streamlit==1.23.1
+
+tabula==1.0.5
+tabula-py==2.7.0
 
