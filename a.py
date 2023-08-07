@@ -10,8 +10,8 @@ import pytesseract
 import re
 import requests
 with st.sidebar:
-   openai_api_key = st.text_input('OpenAI API Key', type='password')
-   st.write(openai_api_key)
+   openai.api_key = st.text_input('OpenAI API Key', type='password')
+   
 
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
