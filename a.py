@@ -11,8 +11,8 @@ import re
 import requests
 with st.sidebar:
    openai_api_key = st.text_input('OpenAI API Key', type='password')
-# os.environ['OPENAI_API_KEY'] ="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"
-# openai.api_key = "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"
+   st.write(openai_api_key)
+
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
