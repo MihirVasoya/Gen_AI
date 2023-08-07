@@ -11,7 +11,7 @@ import re
 import requests
 
 
-
+os.environ['OPENAI_API_KEY'] ="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"
 openai.api_key = "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"
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
