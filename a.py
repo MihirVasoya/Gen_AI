@@ -207,7 +207,7 @@ def main():
             # chat_interface(extracted_text)
 
             def convert_pdf_to_img(pdf_file):
-                return convert_from_path(pdf_file, poppler_path=r'C://Program Files//poppler-23.07.0//Library//bin')
+                return convert_from_path(pdf_file)
 
 
             def convert_image_to_text(file):  
