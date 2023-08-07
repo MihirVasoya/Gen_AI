@@ -11,8 +11,8 @@ import re
 import requests
 
 
-api_key = os.getenv("OPENAI_API_KEY")
-st.write("API Key:", api_key)
+
+openai.api_key = ""
 pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
