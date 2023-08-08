@@ -190,76 +190,94 @@ def main():
 
 
     else:
-        st.title(" IQVIA DEMO")
-        # st.write("Please upload a CIOMS Paper (PDF).")
-        uploaded_file = st.file_uploader("Upload a Document", type=["pdf"])
+        st.title(" DEMO")
+        pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
+        imagem_referencia = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "pdf", "tiff"])
+        button = st.button("Confirm")
 
-        if uploaded_file is not None:
-            st.write("Document Uploaded Successfully!")
+       def convert_image_to_text(file): 
+          text = image_to_string(file)
+          return text
+
+       if button and imagem_referencia is not None:
+      
+          if imagem_referencia.type == "application/pdf":
+              images = pdf2image.convert_from_bytes(imagem_referencia.read())
+              for page in images:
+                  st.image(page, use_column_width=True)
+              final_text = ""
+              for pg, img in enumerate(images):
+                 final_text += convert_image_to_text(img)
+                 st.write(final_text)
+        # st.write("Please upload a CIOMS Paper (PDF).")
+        # uploaded_file = st.file_uploader("Upload a Document", type=["pdf"])
+
+        # if uploaded_file is not None:
+        #     st.write("Document Uploaded Successfully!")
 
        
 
-            st.write("File name:", uploaded_file.name)
-            st.write("File size:", uploaded_file.size, "bytes")
+        #     st.write("File name:", uploaded_file.name)
+        #     st.write("File size:", uploaded_file.size, "bytes")
 
-            # Chat interface
-            # Display the file details (optional)
-            # chat_interface(extracted_text)
+        #     # Chat interface
+        #     # Display the file details (optional)
+        #     # chat_interface(extracted_text)
 
-            def convert_pdf_to_img(pdf_file):
-                return convert_from_path(pdf_file,poppler_path=r'..//bin')
-
-
-            def convert_image_to_text(file):  
-                text = image_to_string(file)
-                return text
+        #     def convert_pdf_to_img(pdf_file):
+        #         return convert_from_path(pdf_file,poppler_path=r'..//bin')
 
 
-            def get_text_from_any_pdf(pdf_file):
+            # def convert_image_to_text(file):  
+            #     text = image_to_string(file)
+            #     return text
+
+
+            # def get_text_from_any_pdf(pdf_file):
                
-                images = convert_pdf_to_img(pdf_file)
-                final_text = ""
-                for pg, img in enumerate(images):
+            #     images = convert_pdf_to_img(pdf_file)
+            #     final_text = ""
+            #     for pg, img in enumerate(images):
                    
-                    final_text += convert_image_to_text(img)
-                    #print("Page n°{}".format(pg))
-                    #print(convert_image_to_text(img))
+            #         final_text += convert_image_to_text(img)
+            #         #print("Page n°{}".format(pg))
+            #         #print(convert_image_to_text(img))
                
-                return final_text
+            #     return final_text
 
 
 
-            def get_completion(prompt, model="gpt-3.5-turbo-16k"):
-                messages = [{"role": "user", "content": prompt}]
-                response = openai.ChatCompletion.create(
-                model=model,
-                messages=messages,
-                temperature=0, # this is the degree of randomness of the model's output
-                )
-                return response.choices[0].message["content"]
+            # def get_completion(prompt, model="gpt-3.5-turbo-16k"):
+            #     messages = [{"role": "user", "content": prompt}]
+            #     response = openai.ChatCompletion.create(
+            #     model=model,
+            #     messages=messages,
+            #     temperature=0, # this is the degree of randomness of the model's output
+            #     )
+            #     return response.choices[0].message["content"]
 
-            ext_text = get_text_from_any_pdf(uploaded_file.name)
+            # ext_text = get_text_from_any_pdf(uploaded_file.name)
 
 
-            input_text = f""" Your task is to convert the data into json format
-            Format the json proper key value pair.
-            Check if the details are related to each other for example someone's details,
-             if the data contains any checkboxes if it is tick or untick then true and false Should come,.'
-            which can inlcude name, date of birth, age, gender, weight, height etc then those should be included as a sub dict
-            Entire json format should be editable as this is a pdf editable form.
+            # input_text = f""" Your task is to convert the data into json format
+            # Format the json proper key value pair.
+            # Check if the details are related to each other for example someone's details,
+            #  if the data contains any checkboxes if it is tick or untick then true and false Should come,.'
+            # which can inlcude name, date of birth, age, gender, weight, height etc then those should be included as a sub dict
+            # Entire json format should be editable as this is a pdf editable form.
                    
                    
-                    Context: {ext_text}
+            #         Context: {ext_text}
                
 
                
-                """
-            response = get_completion(input_text)
-            json_data = json.loads(response)
+            #     """
+            # response = get_completion(input_text)
+            # json_data = json.loads(response)
            
-            # with open("response2.json", "w") as f:
-            st.write("Output:")
-            st.json(json_data)
+            # # with open("response2.json", "w") as f:
+            # st.write("Output:")
+            # st.json(json_data)
 
 if __name__ == "__main__":
     main()
