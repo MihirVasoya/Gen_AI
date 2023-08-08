@@ -14,7 +14,7 @@ with st.sidebar:
    openai.api_key = st.text_input('OpenAI API Key', type='password')
    
 
-pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
     messages = [{"role": "user", "content": prompt}]
