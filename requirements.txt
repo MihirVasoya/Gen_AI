@@ -16,7 +16,7 @@ PyPDF2==3.0.1
 
 pytesseract==0.3.10
 pytest==7.1.2
-
+poppler-utils== 0.1.0
 streamlit==1.23.1
 
 tabula==1.0.5
