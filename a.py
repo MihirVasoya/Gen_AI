@@ -15,7 +15,7 @@ with st.sidebar:
    
 
 # pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
-
+st.write("Path of streamlit:", os.path.dirname(st.__file__))
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
