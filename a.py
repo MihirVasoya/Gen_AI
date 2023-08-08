@@ -195,11 +195,11 @@ def main():
         imagem_referencia = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "pdf", "tiff"])
         button = st.button("Confirm")
 
-       def convert_image_to_text(file): 
+        def convert_image_to_text(file): 
           text = image_to_string(file)
           return text
 
-       if button and imagem_referencia is not None:
+        if button and imagem_referencia is not None:
       
           if imagem_referencia.type == "application/pdf":
               images = pdf2image.convert_from_bytes(imagem_referencia.read())
