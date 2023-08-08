@@ -4,8 +4,9 @@ import os
 import fitz
 import json
 import PyPDF2
-from pdf2image import convert_from_path
+# from pdf2image import convert_from_path
 from pytesseract import image_to_string
+import pdf2image
 import pytesseract
 import re
 import requests
