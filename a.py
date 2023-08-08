@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import os
 import fitz
-from poppler import utils
+
 import json
 import PyPDF2
 # from pdf2image import convert_from_path
