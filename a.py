@@ -18,7 +18,7 @@ st.set_page_config(page_title="Python OCR")
 with st.sidebar:
    openai.api_key = st.text_input('OpenAI API Key', type='password')
    
-pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 st.write("Path of streamlit:", os.path.dirname(st.__file__))
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
@@ -197,7 +197,7 @@ def main():
 
     else:
         class OCR:
-                pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
+                # pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
                 def __init__(self):
                     # Change page title
