@@ -2,6 +2,7 @@ import streamlit as st
 import openai
 import os
 import fitz
+from PIL import Image
 
 import json
 import PyPDF2
