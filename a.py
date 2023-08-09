@@ -12,6 +12,8 @@ import pytesseract
 import re
 import requests
 from functions1 import function as fc
+
+st.set_page_config(page_title="Python OCR")
 with st.sidebar:
    openai.api_key = st.text_input('OpenAI API Key', type='password')
    
@@ -198,7 +200,7 @@ def main():
 
                 def __init__(self):
                     # Change page title
-                    st.set_page_config(page_title="Python OCR")
+                    
                     # Initialize variables
                     self.text = ""
                     self.analyze_text = False
