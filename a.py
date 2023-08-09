@@ -194,7 +194,7 @@ def main():
 
     else:
         class OCR:
-        pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
+                pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
                 def __init__(self):
                     # Change page title
