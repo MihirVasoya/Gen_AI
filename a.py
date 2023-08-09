@@ -7,15 +7,16 @@ import json
 import PyPDF2
 # from pdf2image import convert_from_path
 from pytesseract import image_to_string
-import pdf2image
+
 import pytesseract
 import re
 import requests
+from functions1 import function as fc
 with st.sidebar:
    openai.api_key = st.text_input('OpenAI API Key', type='password')
    
+pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
-pytesseract.pytesseract.tesseract_cmd = None
 st.write("Path of streamlit:", os.path.dirname(st.__file__))
 def get_completion(prompt, model="gpt-3.5-turbo-16k"):
     messages = [{"role": "user", "content": prompt}]
@@ -192,25 +193,75 @@ def main():
 
 
     else:
-        st.title(" DEMO")
+        class OCR:
         pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
-        imagem_referencia = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "pdf", "tiff"])
-        button = st.button("Confirm")
 
-        def convert_image_to_text(file): 
-          text = image_to_string(file)
-          return text
+                def __init__(self):
+                    # Change page title
+                    st.set_page_config(page_title="Python OCR")
+                    # Initialize variables
+                    self.text = ""
+                    self.analyze_text = False
+            
+                def initial(self):
+                    # Initial page content
+                    st.title("OCR Program")
+                    st.write("Optical Character Recognition (OCR) implemented with Python")
+                    image = st.file_uploader("Select an image", type=["png","jpg"])
+                    # If an image is selected...
+                    if image:
+                        img = Image.open(image)
+                        st.image(img, width=350)
+                        st.info("Text extracted")
+                        self.text = self.extract_text(img)
+                        st.write("{}".format(self.text))
+                        
+                        # Option to analyze text
+                        self.analyze_text = st.sidebar.checkbox("Analyze text")
+                        if self.analyze_text == True:
+                            self.show_analysis()
+                
+                def extract_text(self, img):
+                    # The command that extracts text from the image
+                    text = pytesseract.image_to_string(img, lang="eng")
+                    return text
+                
+                def show_analysis(self):
+                    # Search for CPF numbers, dates, good words, and bad words in the extraction
+                    cpf = fc.search_cpf(self.text)
+                    dates = fc.search_date(self.text)
+                    good_words, good_words_percent = fc.search_good_words(self.text)
+                    bad_words, bad_words_percent = fc.search_bad_words(self.text)
+                    
+                    if cpf == None:
+                        st.warning("No CPF found.")
+                    else:
+                        cpf = fc.summarize_cpf(cpf)
+                        st.success("CPF found:")
+                        st.write(cpf)
+            
+                    if dates == None:
+                        st.warning("No dates found.")
+                    else:
+                        dates = fc.summarize_dates(dates)
+                        st.success("Dates found:")
+                        st.write(dates)
+                    
+                    if good_words == 0:
+                        st.warning("No good words identified.")
+                    else:
+                        st.success("Good words:")
+                        st.write("{} word(s). Represent {:.2f}% of the text's words.".format(good_words, good_words_percent))
+                    
+                    if bad_words == 0:
+                        st.warning("No bad words identified.")
+                    else:
+                        st.success("Bad words:")
+                        st.write("{} word(s). Represent {:.2f}% of the text's words.".format(bad_words, bad_words_percent))
+            
+        ocr = OCR()
+        ocr.initial()
 
-        if button and imagem_referencia is not None:
-      
-          if imagem_referencia.type == "application/pdf":
-              images = pdf2image.convert_from_bytes(imagem_referencia.read())
-              for page in images:
-                  st.image(page, use_column_width=True)
-              final_text = ""
-              for pg, img in enumerate(images):
-                 final_text += convert_image_to_text(img)
-                 st.write(final_text)
         # st.write("Please upload a CIOMS Paper (PDF).")
         # uploaded_file = st.file_uploader("Upload a Document", type=["pdf"])
 
