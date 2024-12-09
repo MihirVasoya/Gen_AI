@@ -139,8 +139,7 @@ def main():
                     )
                     return response.choices[0].message["content"]
                
-                pdfFileObject = open(uploaded_file.name, 'rb')
-                pdfReader = PyPDF2.PdfReader(pdfFileObject)
+                pdfReader = PyPDF2.PdfReader(uploaded_file)
                 text=[]
                 summary=' '
                 for i in range(0,len(pdfReader.pages)):
