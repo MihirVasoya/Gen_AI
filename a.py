@@ -15,18 +15,20 @@ import requests
 from functions1 import function as fc
 
 st.set_page_config(page_title="Python OCR")
-with st.sidebar:
-   openai.api_key = st.text_input('OpenAI API Key', type='password')
+# with st.sidebar:
+#    openai.api_key = st.text_input('OpenAI API Key', type='password')
+openai.api_key = r"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"
+
    
 # pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
 st.write("Path of streamlit:", os.path.dirname(st.__file__))
-def get_completion(prompt, model="gpt-3.5-turbo-16k"):
+def get_completion(prompt, model="gpt-4o"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
-        temperature=0,
+        temperature=0.0,
     )
     return response.choices[0].message["content"]
 
@@ -126,13 +128,13 @@ def main():
                
 # creating a pdf reader object
 
-                def get_completion(prompt, model="gpt-3.5-turbo-16k"):
+                def get_completion(prompt, model="gpt-4o"):
                     messages = [{"role": "user", "content": prompt}]
                     response = openai.ChatCompletion.create(
                     model=model,
                     messages=messages,
                        
-                    temperature=0.7,
+                    temperature=0.3,
                     #      temperature=0, # this is the degree of randomness of the model's output
                     )
                     return response.choices[0].message["content"]
@@ -149,13 +151,14 @@ def main():
                    
                     text.append(pageObj)
                 # for i in range(len(text)):
-                prompt =f"""UserinputData in japanese converted to english "
+                prompt =f"""User input Data converted in to english "
 
                 {text}"""
                 try:
                     response = get_completion(prompt)
                 except:
                     response = get_completion(prompt)
+                st.write(response)
 
                 prompt1 =f"""
                 Your task is to convert the data into json format
@@ -169,11 +172,11 @@ def main():
                 """
                 response1 = get_completion(prompt1)
 
-                json_data1 = json.loads(response1)
+                # json_data1 = json.loads(response1)
        
                 # with open("response2.json", "w") as f:
                 st.write("Output:")
-                st.json(json_data1)
+                st.write(response1)
                     #st.write(response)
                     #summary= summary+' ' +json_data1 +'\n\n'
 
