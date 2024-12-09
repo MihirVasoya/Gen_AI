@@ -86,7 +86,7 @@ def main():
         st.write(("👈Pick an option for left"))
 
     elif selected_option == "Research Paper Summary":
-        st.title(" IQVIA DEMO")
+        st.title(" GenAI DEMO")
         # st.write("You selected Research Paper.")
         # st.write("Please upload a Research Paper (PDF).")
         uploaded_file = st.file_uploader("Upload a Document", type=["pdf"])
@@ -109,7 +109,7 @@ def main():
     elif selected_option == "Translate_OCR":
        
         #st.write("You selected Research Paper.")
-            st.title(" IQVIA DEMO")
+            st.title(" GenAI DEMO")
             # st.write("Please upload a Language Paper (PDF).")
             uploaded_file = st.file_uploader("Upload a Document", type=["pdf"])
 
