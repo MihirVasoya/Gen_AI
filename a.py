@@ -22,7 +22,7 @@ with st.sidebar:
    
 # pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
 
-st.write("Path of streamlit:", os.path.dirname(st.__file__))
+# st.write("Path of streamlit:", os.path.dirname(st.__file__))
 def get_completion(prompt, model="gpt-4o"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
@@ -76,7 +76,7 @@ def main():
     # Sidebar with the dropdown menu
     with st.sidebar:
            
-        st.write("Sidebar")
+        st.subheader("Select Option")
         selected_option = st.selectbox("Select an option", ["Select Option","Translate_OCR", "Dynamic_OCR", "Research Paper Summary"],index=0)
 
 
