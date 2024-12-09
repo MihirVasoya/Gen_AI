@@ -17,7 +17,7 @@ from functions1 import function as fc
 st.set_page_config(page_title="Python OCR")
 # with st.sidebar:
 #    openai.api_key = st.text_input('OpenAI API Key', type='password')
-openai.api_key = r"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"
+openai.api_key ="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"
 
    
 # pytesseract.pytesseract.tesseract_cmd = 'C://Program Files//Tesseract-OCR//tesseract.exe'
